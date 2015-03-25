@@ -1,0 +1,45 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/ldeluca/.nvm/v0.11.14/bin/node',
+1 verbose cli   '/Users/ldeluca/.nvm/v0.11.14/bin/npm',
+1 verbose cli   'uninstall',
+1 verbose cli   '-g',
+1 verbose cli   'cordova-jquery' ]
+2 info using npm@2.0.0
+3 info using node@v0.11.14
+4 verbose lib/node_modules/cordova-jquery unbuild
+5 info preuninstall cordova-jquery@0.1.3
+6 info uninstall cordova-jquery@0.1.3
+7 verbose true,/Users/ldeluca/.nvm/v0.11.14/lib/node_modules,/Users/ldeluca/.nvm/v0.11.14/lib/node_modules unbuild cordova-jquery@0.1.3
+8 verbose /Users/ldeluca/.nvm/v0.11.14/bin,[object Object] binRoot
+9 verbose gentlyRm verifying that /Users/ldeluca/.nvm/v0.11.14/lib/node_modules/cordova-jquery is managed by npm
+10 silly cacheAndTest /Users/ldeluca/.nvm/v0.11.14/lib/node_modules/cordova-jquery is inside /Users/ldeluca/.nvm/v0.11.14/lib/node_modules
+11 silly gentlyRm /Users/ldeluca/.nvm/v0.11.14/lib/node_modules/cordova-jquery is managed by npm
+12 silly gentlyRm /Users/ldeluca/.nvm/v0.11.14/bin/cordova-jquery is not under /Users/ldeluca/.nvm/v0.11.14/lib/node_modules/cordova-jquery
+13 silly gentlyRm checking to see if /Users/ldeluca/.nvm/v0.11.14/bin/cordova-jquery is a link
+14 silly gentlyRm /Users/ldeluca/.nvm/v0.11.14/bin/cordova-jquery is a link
+15 silly gentlyRm /Users/ldeluca/.nvm/v0.11.14/lib/node_modules/cordova-jquery/cordova-jquery inside /Users/ldeluca/.nvm/v0.11.14/lib/node_modules/cordova-jquery
+16 verbose gentlyRm vacuuming /Users/ldeluca/.nvm/v0.11.14/bin/cordova-jquery
+17 silly gentlyRm removing /Users/ldeluca/.nvm/v0.11.14/bin/cordova-jquery
+18 silly gentlyRm quitting because other entries in /Users/ldeluca/.nvm/v0.11.14/bin
+19 info postuninstall cordova-jquery@0.1.3
+20 verbose gentlyRm vacuuming /Users/ldeluca/.nvm/v0.11.14/lib/node_modules/cordova-jquery
+21 silly gentlyRm purging /Users/ldeluca/.nvm/v0.11.14/lib/node_modules/cordova-jquery
+22 verbose stack Error: EACCES, unlink '/Users/ldeluca/.nvm/v0.11.14/lib/node_modules/cordova-jquery/License.txt'
+22 verbose stack     at Error (native)
+23 verbose cwd /Users/ldeluca/workspaces/npm/cordova-jquery
+24 error Darwin 14.0.0
+25 error argv "/Users/ldeluca/.nvm/v0.11.14/bin/node" "/Users/ldeluca/.nvm/v0.11.14/bin/npm" "uninstall" "-g" "cordova-jquery"
+26 error node v0.11.14
+27 error npm  v2.0.0
+28 error path /Users/ldeluca/.nvm/v0.11.14/lib/node_modules/cordova-jquery/License.txt
+29 error code EACCES
+30 error errno -13
+31 error Error: EACCES, unlink '/Users/ldeluca/.nvm/v0.11.14/lib/node_modules/cordova-jquery/License.txt'
+31 error     at Error (native)
+31 error  { [Error: EACCES, unlink '/Users/ldeluca/.nvm/v0.11.14/lib/node_modules/cordova-jquery/License.txt']
+31 error   stack: 'Error: EACCES, unlink \'/Users/ldeluca/.nvm/v0.11.14/lib/node_modules/cordova-jquery/License.txt\'\n    at Error (native)',
+31 error   errno: -13,
+31 error   code: 'EACCES',
+31 error   path: '/Users/ldeluca/.nvm/v0.11.14/lib/node_modules/cordova-jquery/License.txt' }
+32 error Please try running this command again as root/Administrator.
+33 verbose exit [ -13, true ]

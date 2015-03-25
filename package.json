@@ -1,0 +1,39 @@
+{
+  "name": "cordova-jquery",
+  "version": "0.1.0",
+  "description": "This npm module will configure an existing apache cordova application to use the latest jquery-mobile as well as allow users to choose from a number of jquery mobile templates to apply to their projects.",
+  "main": "cordova-jquery",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ldeluca/cordova-jquery.git"
+  },
+  "keywords": [
+    "jquery",
+    "cordova",
+    "skeleton",
+	"template",
+    "jquery-mobile",
+    "mobile",
+    "framework",
+    "javascript",
+	"jQM"
+  ],
+  "author": "Lisa Seacat DeLuca <ldeluca@us.ibm.com> (http://ibm.com/)",
+  "licenses": 
+  {
+    "type": "MIT",
+    "url": "https://github.com/ldeluca/cordova-jquery/blob/master/License.txt"
+  },
+  "bugs": {
+    "url": "https://github.com/ldeluca/cordova-jquery/issues"
+  },
+  "bin": {
+    "cordova-jquery": "cordova-jquery"
+  },
+	"dependencies": {
+		"cheerio": "0.18.0",
+		"inquirer":"0.8.0",
+		"path":"0.4.9"
+	},
+  "homepage": "https://github.com/ldeluca/cordova-jquery"
+}
