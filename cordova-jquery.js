@@ -1,16 +1,21 @@
 var path = require("path");
+var fs = require("fs");
 var myfile = path.join("www","index.html");
 var cheerio = require("cheerio");
+var PropertiesReader = require('properties-reader');
 
 //rewriting to use https://www.npmjs.org/package/inquirer
 var rl = require('inquirer');
 
+//instantiate the properties reader ...
+var properties = PropertiesReader(__dirname + '/properties/cordova-jquery-npm.properties');
+
 //prompt messages
-var sureQuestion = 'Would you like to add jQuery mobile to the current Apache Cordova project?';
-var whatNextPrompt = "What would you like to do now that jQuery is enabled?";
-var templatePromptMsg = 'Which jQuery mobile template would you like to apply to your Apache Cordova project?';
-var externalPanelPromptMsg = 'How would you like the external panel to be revealed?';
-var externalPanelPositionPromptMsg = 'What side of the screen would you like the external panel?';
+var sureQuestion = properties.get('text.sureQuestion') ;
+var whatNextPrompt = properties.get('text.whatNextPrompt');
+var templatePromptMsg = properties.get('text.templatePromptMsg');
+var externalPanelPromptMsg = properties.get('text.externalPanelPromptMsg');
+var externalPanelPositionPromptMsg = properties.get('text.externalPanelPositionPromptMsg');
 
 	
 function cordovaJQuery() {
@@ -63,7 +68,6 @@ function addJQM(fs){
 	                              '\n\t\t$(document).on("mobileinit", function() {' + 
                                   '\n\t\t\t\t$.mobile.defaultPageTransition = "none";' + 
                                   '\n\t\t\t\t$.mobile.defaultDialogTransition = "none";' + 
-                                  '\n\t\t\t\t$.mobile.buttonMarkup.hoverDelay = 0;' + 
                                   '\n\t\t});';	
 	                              
 	//<link rel="stylesheet" href="js/jquery.mobile.css">
@@ -150,7 +154,7 @@ function whatsNext() {
 			rl.prompt([{
 				type: "input",
 				name: "elid",
-				message: "What is the id of the parent element you'd like to insert this jQuery mobile element as a child of?",
+				message: properties.get("text.insertElement"),
 				default: "deviceready"
 			  }], function(res){
 				//then based on that we can ask what type of element to add
@@ -176,7 +180,7 @@ function insertTemplate(html1, html2, doneMsg, js1){
 		rl.prompt([{
 			type: "confirm",
 			name: "keepCode",
-			message: "Would you like to keep the current code?  ...it could get ugly!",
+			message: properties.get("text.keepCodeInquiry"),
 			default: false
 		}], function( answers ) {
 			if ( answers.keepCode === true ){
@@ -188,7 +192,7 @@ function insertTemplate(html1, html2, doneMsg, js1){
 		rl.prompt([{
 			type: "confirm",
 			name: "continue",
-			message: "WARNING: continuing will override the code in index.html",
+			message: properties.get("text.codeOverrideWarning"),
 			default: false
 		}], function( answers ) {
 			if ( answers.continue === false ){
@@ -234,7 +238,7 @@ function externalPanel(revealType, externalPanelPosition){
 	//data-position="left"
 	var html1 = '\n\t\t<!-- page 1 -->\n\t\t<div data-role="page" id="page1">\n\t\t\t<div data-role="header">\n\t\t\t\t<h1>Header</h1>\n\t\t\t</div><!-- /header -->\n\t\t\t\n\t\t\t<div class="ui-content">\n\t\t\t\t';
 	var html2 = '\n\t\t\t\t<a href="#panel">Open panel</a>\n\t\t\t</div><!-- /content -->\n\t\t</div><!-- /page -->\n\t\t\n\t\t<!-- panel to reveal -->\n\t\t<div data-role="panel" id="panel" data-position="' + externalPanelPosition + '" data-display="' + revealType + '" data-theme="a">\n\t\t\t<p>Place panel content here</p>\n\t\t\t<a href="#close" data-rel="close">Close</a>\n\t\t</div><!-- /panel -->\n';
-	var doneMsg = "Done injecting left external Panel on the " + externalPanelPosition + " side revealed using " + revealType + " as a jquery mobile template";
+	var doneMsg = properties.get("text.externalPanel.doneMsg.1") + " " + externalPanelPosition + " " + properties.get("text.externalPanel.doneMsg.2") + " " + revealType + " " + properties.get("text.externalPanel.doneMsg.3");
 				var js1 = '\n        <script id="paneljs">\n\t\t$(function() {\n\t\t\ttry{$( "body>[data-role=\'panel\']" ).panel();}catch(e){}\n\t\t});\n        </script>';
 	insertTemplate(html1, html2, doneMsg, js1);
 }
@@ -242,7 +246,7 @@ function externalPanel(revealType, externalPanelPosition){
 function multiPage(){
 	var html1 = '\n\t\t<!-- jquery mobile page 1 -->\n\t\t<div data-role="page" id="page1">\n\t\t\t<div data-role="header">\n\t\t\t\t<h1>Page 1</h1>\n\t\t\t</div>\n\n\t\t\t<div role="main" class="ui-content">\n\t\t\t\t';
 	var html2 = '\n\t\t\t\t\t<a href="#page2">Goto page2</a>\n\t\t\t\n\t\t</div>\n\t\t\t<!-- end of page 1 content -->\n\n\t\t\t<div data-role="footer" data-position="fixed">\n\t\t\t\t<h4>Page 1 Footer</h4>\n\t\t\t</div>\n\t\t\t<!-- end page 1 footer -->\n\t\t</div>\n\t\t<!-- end page 1 -->\n\n\t\t<!-- jquery mobile page 2 -->\n\t\t<div data-role="page" id="page2">\n\t\t\t<div data-role="header">\n\t\t\t\t<h1>Page 2</h1>\n\t\t\t</div>\n\n\t\t\t<div role="main" class="ui-content">\n\t\t\t\t<h4>Page 2 content goes here</h4>\n\t\t\t\t<a href="#page1">Goto page1</a>\n\t\t\t</div>\n\t\t\t<!-- end of page 2 content -->\n\n\t\t\t<div data-role="footer" data-position="fixed">\n\t\t\t\t<h4>Page 2 Footer</h4>\n\t\t\t</div>\n\t\t\t<!-- end page 2 footer -->\n\t\t</div>\n\t\t<!-- end page 2 -->\n';
-	var doneMsg = "Done injecting single page jquery mobile template";
+	var doneMsg = properties.get("text.multiPage.doneMsg");
 	var js1 = '';
 	insertTemplate(html1, html2, doneMsg, js1);
 }
@@ -250,7 +254,7 @@ function multiPage(){
 function persistantNavbar(){
 	var html1 = '\n\t\t<!-- page 1 -->\n\t\t<div data-role="page" id="page1">\n\t\t\t<div data-role="header">\n\t\t\t\t<h1>Page 1</h1>\n\t\t\t</div>\n\t\t\t\n\t\t\t<div class="ui-content">\n\t\t\t\t';
 	var html2 = '\n\t\t\t</div><!-- end page 1 content -->\n\t\t\t\n\t\t\t<div data-role="footer" data-position="fixed">\n\t\t\t\t<div data-role="navbar">\n\t\t\t\t\t<ul>\n\t\t\t\t\t\t<li><a href="#page1" class="ui-btn-active ui-state-persist">Page 1</a></li>\n\t\t\t\t\t\t<li><a href="#page2">Page 2</a></li>\n\t\t\t\t\t\t<li><a href="#page3">Page 3</a></li>\n\t\t\t\t\t</ul>\n\t\t\t\t</div><!-- /navbar -->\n\t\t\t</div><!-- /footer -->\n\t\t</div><!-- /page1 -->\n\n\t\t\t\t<!-- page 2 -->\n\t\t<div data-role="page" id="page2">\n\t\t\t<div data-role="header">\n\t\t\t\t<h1>Page 2</h1>\n\t\t\t</div>\n\t\t\t\n\t\t\t<div class="ui-content">\n\t\t\t\t<p>This is page 2</p>\n\t\t\t</div><!-- end page 2 content -->\n\t\t\t\n\t\t\t<div data-role="footer" data-position="fixed">\n\t\t\t\t<div data-role="navbar">\n\t\t\t\t\t<ul>\n\t\t\t\t\t\t<li><a href="#page1">Page 1</a></li>\n\t\t\t\t\t\t<li><a href="#page2" class="ui-btn-active ui-state-persist">Page 2</a></li>\n\t\t\t\t\t\t<li><a href="#page3">Page 3</a></li>\n\t\t\t\t\t</ul>\n\t\t\t\t</div><!-- /navbar -->\n\t\t\t</div><!-- /footer -->\n\t\t</div><!-- /page2 -->\n\t\t\n\t\t\t\t<!-- page 3 -->\n\t\t<div data-role="page" id="page3">\n\t\t\t<div data-role="header">\n\t\t\t\t<h1>Page 3</h1>\n\t\t\t</div>\n\t\t\t\n\t\t\t<div class="ui-content">\n\t\t\t\t<p>This is page 3</p>\n\t\t\t</div><!-- end page 3 content -->\n\t\t\t\n\t\t\t<div data-role="footer" data-position="fixed">\n\t\t\t\t<div data-role="navbar">\n\t\t\t\t\t<ul>\n\t\t\t\t\t\t<li><a href="#page1">Page 1</a></li>\n\t\t\t\t\t\t<li><a href="#page2">Page 2</a></li>\n\t\t\t\t\t\t<li><a href="#page3" class="ui-btn-active ui-state-persist">Page 3</a></li>\n\t\t\t\t\t</ul>\n\t\t\t\t</div><!-- /navbar -->\n\t\t\t</div><!-- /footer -->\n\t\t</div><!-- /page3 -->\n';
-	var doneMsg = "Done injecting persistent navbar jquery mobile template";
+	var doneMsg = properties.get("text.persistantNavbar.doneMsg");
 	var js1 = '';
 	insertTemplate(html1, html2, doneMsg, js1);
 }
