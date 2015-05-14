@@ -1,0 +1,26 @@
+# Plugin Templates ...
+[templates]
+
+#Common ...
+common.jQMCustomCss = \n\t\t/* For avoiding title truncation in wp8 */\n\t\t.ui-header .ui-title {\n\t\t\t\toverflow: visible !important;\n\t\t}\n\t\t
+
+common.disablejQueryTransition = \n\t\t/* For having a faster transition */\n\t\t$(document).on("mobileinit", function() {\n\t\t\t\t$.mobile.defaultPageTransition = "none";\n\t\t\t\t$.mobile.defaultDialogTransition = "none";\n\t\t});
+
+#Multipage templates ...
+multiPage.before-content = \n\t\t<!-- jquery mobile page 1 -->\n\t\t<div data-role="page" id="page1">\n\t\t\t<div data-role="header">\n\t\t\t\t<h1>Page 1</h1>\n\t\t\t</div>\n\n\t\t\t<div role="main" class="ui-content">\n\t\t\t\t
+
+multiPage.after-content = \n\t\t\t\t\t<a href="#page2">Goto page2</a>\n\t\t\t\n\t\t</div>\n\t\t\t<!-- end of page 1 content -->\n\n\t\t\t<div data-role="footer" data-position="fixed">\n\t\t\t\t<h4>Page 1 Footer</h4>\n\t\t\t</div>\n\t\t\t<!-- end page 1 footer -->\n\t\t</div>\n\t\t<!-- end page 1 -->\n\n\t\t<!-- jquery mobile page 2 -->\n\t\t<div data-role="page" id="page2">\n\t\t\t<div data-role="header">\n\t\t\t\t<h1>Page 2</h1>\n\t\t\t</div>\n\n\t\t\t<div role="main" class="ui-content">\n\t\t\t\t<h4>Page 2 content goes here</h4>\n\t\t\t\t<a href="#page1">Goto page1</a>\n\t\t\t</div>\n\t\t\t<!-- end of page 2 content -->\n\n\t\t\t<div data-role="footer" data-position="fixed">\n\t\t\t\t<h4>Page 2 Footer</h4>\n\t\t\t</div>\n\t\t\t<!-- end page 2 footer -->\n\t\t</div>\n\t\t<!-- end page 2 -->\n
+
+
+#persistantNavbar templates ...
+persistantNavbar.before-content = \n\t\t<!-- page 1 -->\n\t\t<div data-role="page" id="page1">\n\t\t\t<div data-role="header">\n\t\t\t\t<h1>Page 1</h1>\n\t\t\t</div>\n\t\t\t\n\t\t\t<div class="ui-content">\n\t\t\t\t
+
+persistantNavbar.after-content = \n\t\t\t</div><!-- end page 1 content -->\n\t\t\t\n\t\t\t<div data-role="footer" data-position="fixed">\n\t\t\t\t<div data-role="navbar">\n\t\t\t\t\t<ul>\n\t\t\t\t\t\t<li><a href="#page1" class="ui-btn-active ui-state-persist">Page 1</a></li>\n\t\t\t\t\t\t<li><a href="#page2">Page 2</a></li>\n\t\t\t\t\t\t<li><a href="#page3">Page 3</a></li>\n\t\t\t\t\t</ul>\n\t\t\t\t</div><!-- /navbar -->\n\t\t\t</div><!-- /footer -->\n\t\t</div><!-- /page1 -->\n\n\t\t\t\t<!-- page 2 -->\n\t\t<div data-role="page" id="page2">\n\t\t\t<div data-role="header">\n\t\t\t\t<h1>Page 2</h1>\n\t\t\t</div>\n\t\t\t\n\t\t\t<div class="ui-content">\n\t\t\t\t<p>This is page 2</p>\n\t\t\t</div><!-- end page 2 content -->\n\t\t\t\n\t\t\t<div data-role="footer" data-position="fixed">\n\t\t\t\t<div data-role="navbar">\n\t\t\t\t\t<ul>\n\t\t\t\t\t\t<li><a href="#page1">Page 1</a></li>\n\t\t\t\t\t\t<li><a href="#page2" class="ui-btn-active ui-state-persist">Page 2</a></li>\n\t\t\t\t\t\t<li><a href="#page3">Page 3</a></li>\n\t\t\t\t\t</ul>\n\t\t\t\t</div><!-- /navbar -->\n\t\t\t</div><!-- /footer -->\n\t\t</div><!-- /page2 -->\n\t\t\n\t\t\t\t<!-- page 3 -->\n\t\t<div data-role="page" id="page3">\n\t\t\t<div data-role="header">\n\t\t\t\t<h1>Page 3</h1>\n\t\t\t</div>\n\t\t\t\n\t\t\t<div class="ui-content">\n\t\t\t\t<p>This is page 3</p>\n\t\t\t</div><!-- end page 3 content -->\n\t\t\t\n\t\t\t<div data-role="footer" data-position="fixed">\n\t\t\t\t<div data-role="navbar">\n\t\t\t\t\t<ul>\n\t\t\t\t\t\t<li><a href="#page1">Page 1</a></li>\n\t\t\t\t\t\t<li><a href="#page2">Page 2</a></li>\n\t\t\t\t\t\t<li><a href="#page3" class="ui-btn-active ui-state-persist">Page 3</a></li>\n\t\t\t\t\t</ul>\n\t\t\t\t</div><!-- /navbar -->\n\t\t\t</div><!-- /footer -->\n\t\t</div><!-- /page3 -->\n
+
+
+#externalPanel templates ...
+externalPanel.before-content = \n\t\t<!-- page 1 -->\n\t\t<div data-role="page" id="page1">\n\t\t\t<div data-role="header">\n\t\t\t\t<h1>Header</h1>\n\t\t\t</div><!-- /header -->\n\t\t\t\n\t\t\t<div class="ui-content">\n\t\t\t\t
+
+externalPanel.after-content = \n\t\t\t\t<a href="#panel">Open panel</a>\n\t\t\t</div><!-- /content -->\n\t\t</div><!-- /page -->\n\t\t\n\t\t<!-- panel to reveal -->\n\t\t<div data-role="panel" id="panel" data-position='{0}' data-display='{1}' data-theme="a">\n\t\t\t<p>Place panel content here</p>\n\t\t\t<a href="#close" data-rel="close">Close</a>\n\t\t</div><!-- /panel -->\n
+
+externalPanel.behavior = \n        <script id="paneljs">\n\t\t$(function() {\n\t\t\ttry{$( "body>[data-role=\'panel\']" ).panel();}catch(e){}\n\t\t});\n        </script>

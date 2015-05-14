@@ -8,7 +8,8 @@ var PropertiesReader = require('properties-reader');
 var rl = require('inquirer');
 
 //instantiate the properties reader ...
-var properties = PropertiesReader(__dirname + '/properties/cordova-jquery-npm.properties');
+var properties = PropertiesReader(__dirname + '/text/cordova-jquery-npm.properties');
+var builtInTemplates = PropertiesReader(__dirname + '/templates/built-in');
 
 //prompt messages
 var sureQuestion = properties.get('text.sureQuestion') ;
@@ -17,7 +18,6 @@ var templatePromptMsg = properties.get('text.templatePromptMsg');
 var externalPanelPromptMsg = properties.get('text.externalPanelPromptMsg');
 var externalPanelPositionPromptMsg = properties.get('text.externalPanelPositionPromptMsg');
 
-	
 function cordovaJQuery() {
 	var fs = require('fs');
 	
@@ -59,16 +59,8 @@ function addJQM(fs){
 		var npmjquerymobilecss = 'js/jquery-1.5.0.mobile.min.css';
 	}
 	
-	var npmjQueryMobileCustomCss = '\n\t\t/* For avoiding title truncation in wp8 */' + 
-								'\n\t\t.ui-header .ui-title {' + 
-								'\n\t\t\t\toverflow: visible !important; ' + 
-								'\n\t\t}\n\t\t';
-	
-	var disablejQueryTransition = '\n\t\t/* For having a faster transition */' +
-	                              '\n\t\t$(document).on("mobileinit", function() {' + 
-                                  '\n\t\t\t\t$.mobile.defaultPageTransition = "none";' + 
-                                  '\n\t\t\t\t$.mobile.defaultDialogTransition = "none";' + 
-                                  '\n\t\t});';	
+	var npmjQueryMobileCustomCss = builtInTemplates.get('templates.common.jQMCustomCss');
+	var disablejQueryTransition = builtInTemplates.get('templates.common.disablejQueryTransition');	
 	                              
 	//<link rel="stylesheet" href="js/jquery.mobile.css">
 	$("head link[rel='stylesheet']").last().after("\n        <link rel='stylesheet' type='text/css' href='" + npmjquerymobilecss + "' >");
@@ -236,24 +228,24 @@ function doIt(fs, bodychildren, content, html1, html2, doneMsg, js1){
 function externalPanel(revealType, externalPanelPosition){
 	//data-display="push"
 	//data-position="left"
-	var html1 = '\n\t\t<!-- page 1 -->\n\t\t<div data-role="page" id="page1">\n\t\t\t<div data-role="header">\n\t\t\t\t<h1>Header</h1>\n\t\t\t</div><!-- /header -->\n\t\t\t\n\t\t\t<div class="ui-content">\n\t\t\t\t';
-	var html2 = '\n\t\t\t\t<a href="#panel">Open panel</a>\n\t\t\t</div><!-- /content -->\n\t\t</div><!-- /page -->\n\t\t\n\t\t<!-- panel to reveal -->\n\t\t<div data-role="panel" id="panel" data-position="' + externalPanelPosition + '" data-display="' + revealType + '" data-theme="a">\n\t\t\t<p>Place panel content here</p>\n\t\t\t<a href="#close" data-rel="close">Close</a>\n\t\t</div><!-- /panel -->\n';
+	var html1 = builtInTemplates.get("templates.externalPanel.before-content");
+	var html2 = builtInTemplates.get("templates.externalPanel.after-content").replace("{0}", externalPanelPosition).replace("{1}", revealType);
 	var doneMsg = properties.get("text.externalPanel.doneMsg.1") + " " + externalPanelPosition + " " + properties.get("text.externalPanel.doneMsg.2") + " " + revealType + " " + properties.get("text.externalPanel.doneMsg.3");
-				var js1 = '\n        <script id="paneljs">\n\t\t$(function() {\n\t\t\ttry{$( "body>[data-role=\'panel\']" ).panel();}catch(e){}\n\t\t});\n        </script>';
+				var js1 = builtInTemplates.get("templates.externalPanel.behavior");
 	insertTemplate(html1, html2, doneMsg, js1);
 }
 
 function multiPage(){
-	var html1 = '\n\t\t<!-- jquery mobile page 1 -->\n\t\t<div data-role="page" id="page1">\n\t\t\t<div data-role="header">\n\t\t\t\t<h1>Page 1</h1>\n\t\t\t</div>\n\n\t\t\t<div role="main" class="ui-content">\n\t\t\t\t';
-	var html2 = '\n\t\t\t\t\t<a href="#page2">Goto page2</a>\n\t\t\t\n\t\t</div>\n\t\t\t<!-- end of page 1 content -->\n\n\t\t\t<div data-role="footer" data-position="fixed">\n\t\t\t\t<h4>Page 1 Footer</h4>\n\t\t\t</div>\n\t\t\t<!-- end page 1 footer -->\n\t\t</div>\n\t\t<!-- end page 1 -->\n\n\t\t<!-- jquery mobile page 2 -->\n\t\t<div data-role="page" id="page2">\n\t\t\t<div data-role="header">\n\t\t\t\t<h1>Page 2</h1>\n\t\t\t</div>\n\n\t\t\t<div role="main" class="ui-content">\n\t\t\t\t<h4>Page 2 content goes here</h4>\n\t\t\t\t<a href="#page1">Goto page1</a>\n\t\t\t</div>\n\t\t\t<!-- end of page 2 content -->\n\n\t\t\t<div data-role="footer" data-position="fixed">\n\t\t\t\t<h4>Page 2 Footer</h4>\n\t\t\t</div>\n\t\t\t<!-- end page 2 footer -->\n\t\t</div>\n\t\t<!-- end page 2 -->\n';
+	var html1 = builtInTemplates.get("templates.multiPage.before-content");
+	var html2 = builtInTemplates.get("templates.multiPage.after-content");
 	var doneMsg = properties.get("text.multiPage.doneMsg");
 	var js1 = '';
 	insertTemplate(html1, html2, doneMsg, js1);
 }
 
 function persistantNavbar(){
-	var html1 = '\n\t\t<!-- page 1 -->\n\t\t<div data-role="page" id="page1">\n\t\t\t<div data-role="header">\n\t\t\t\t<h1>Page 1</h1>\n\t\t\t</div>\n\t\t\t\n\t\t\t<div class="ui-content">\n\t\t\t\t';
-	var html2 = '\n\t\t\t</div><!-- end page 1 content -->\n\t\t\t\n\t\t\t<div data-role="footer" data-position="fixed">\n\t\t\t\t<div data-role="navbar">\n\t\t\t\t\t<ul>\n\t\t\t\t\t\t<li><a href="#page1" class="ui-btn-active ui-state-persist">Page 1</a></li>\n\t\t\t\t\t\t<li><a href="#page2">Page 2</a></li>\n\t\t\t\t\t\t<li><a href="#page3">Page 3</a></li>\n\t\t\t\t\t</ul>\n\t\t\t\t</div><!-- /navbar -->\n\t\t\t</div><!-- /footer -->\n\t\t</div><!-- /page1 -->\n\n\t\t\t\t<!-- page 2 -->\n\t\t<div data-role="page" id="page2">\n\t\t\t<div data-role="header">\n\t\t\t\t<h1>Page 2</h1>\n\t\t\t</div>\n\t\t\t\n\t\t\t<div class="ui-content">\n\t\t\t\t<p>This is page 2</p>\n\t\t\t</div><!-- end page 2 content -->\n\t\t\t\n\t\t\t<div data-role="footer" data-position="fixed">\n\t\t\t\t<div data-role="navbar">\n\t\t\t\t\t<ul>\n\t\t\t\t\t\t<li><a href="#page1">Page 1</a></li>\n\t\t\t\t\t\t<li><a href="#page2" class="ui-btn-active ui-state-persist">Page 2</a></li>\n\t\t\t\t\t\t<li><a href="#page3">Page 3</a></li>\n\t\t\t\t\t</ul>\n\t\t\t\t</div><!-- /navbar -->\n\t\t\t</div><!-- /footer -->\n\t\t</div><!-- /page2 -->\n\t\t\n\t\t\t\t<!-- page 3 -->\n\t\t<div data-role="page" id="page3">\n\t\t\t<div data-role="header">\n\t\t\t\t<h1>Page 3</h1>\n\t\t\t</div>\n\t\t\t\n\t\t\t<div class="ui-content">\n\t\t\t\t<p>This is page 3</p>\n\t\t\t</div><!-- end page 3 content -->\n\t\t\t\n\t\t\t<div data-role="footer" data-position="fixed">\n\t\t\t\t<div data-role="navbar">\n\t\t\t\t\t<ul>\n\t\t\t\t\t\t<li><a href="#page1">Page 1</a></li>\n\t\t\t\t\t\t<li><a href="#page2">Page 2</a></li>\n\t\t\t\t\t\t<li><a href="#page3" class="ui-btn-active ui-state-persist">Page 3</a></li>\n\t\t\t\t\t</ul>\n\t\t\t\t</div><!-- /navbar -->\n\t\t\t</div><!-- /footer -->\n\t\t</div><!-- /page3 -->\n';
+	var html1 = builtInTemplates.get("templates.persistantNavbar.before-content");
+	var html2 = builtInTemplates.get("templates.persistantNavbar.after-content");
 	var doneMsg = properties.get("text.persistantNavbar.doneMsg");
 	var js1 = '';
 	insertTemplate(html1, html2, doneMsg, js1);
