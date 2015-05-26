@@ -99,14 +99,14 @@ function templateQuestion(){
 		type: "list",
 		name: "template",
 		message: templatePromptMsg,
-		choices: [ "multiPage","persistentNavbar","externalPanel","exit" ]
+		choices: [ "multiPage", "persistentNavbar", "externalPanel", "accordion", "exit" ]
 	  }], function( answers ) {
 		switch(answers.template) {
 		case 'multiPage':
-			multiPage();
+			renderTemplate("templates.multiPage.before-content", "templates.multiPage.after-content", "text.multiPage.doneMsg");
 			break;
 		case 'persistentNavbar':
-			persistantNavbar();
+			renderTemplate("templates.persistantNavbar.before-content", "templates.persistantNavbar.after-content", "text.persistantNavbar.doneMsg")
 			break;
 		case 'externalPanel':
 			//ask the user what type of reveal to display the panel
@@ -124,6 +124,9 @@ function templateQuestion(){
 				externalPanel(answers.reveal, answers.position);
 			});
 			break;
+		case 'accordion':
+			renderTemplate("templates.accordion.before-content", "templates.accordion.after-content", "text.accordion.doneMsg")
+			break;			
 		default:
 			console.log('Okay, exiting.');
 			break;
@@ -235,19 +238,12 @@ function externalPanel(revealType, externalPanelPosition){
 	insertTemplate(html1, html2, doneMsg, js1);
 }
 
-function multiPage(){
-	var html1 = builtInTemplates.get("templates.multiPage.before-content");
-	var html2 = builtInTemplates.get("templates.multiPage.after-content");
-	var doneMsg = properties.get("text.multiPage.doneMsg");
+function renderTemplate(beforeContentID, afterContentID, doneMsgID) {
+	var html1 = builtInTemplates.get(beforeContentID);
+	var html2 = builtInTemplates.get(afterContentID);
+	var doneMsg = properties.get(doneMsgID);
 	var js1 = '';
-	insertTemplate(html1, html2, doneMsg, js1);
-}
-
-function persistantNavbar(){
-	var html1 = builtInTemplates.get("templates.persistantNavbar.before-content");
-	var html2 = builtInTemplates.get("templates.persistantNavbar.after-content");
-	var doneMsg = properties.get("text.persistantNavbar.doneMsg");
-	var js1 = '';
+	
 	insertTemplate(html1, html2, doneMsg, js1);
 }
 

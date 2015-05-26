@@ -2,7 +2,7 @@
 [templates]
 
 #Common ...
-common.jQMCustomCss = \n\t\t/* For avoiding title truncation in wp8 */\n\t\t.ui-header .ui-title {\n\t\t\t\toverflow: visible !important;\n\t\t}\n\t\t
+common.jQMCustomCss = \n\t\t/* For avoiding title truncation in wp8 */\n\t\t.ui-header .ui-title {\n\t\t\t\toverflow: visible !important;\n\t\t}\n\t\t/* For fixing the absolute position issue for the default cordova gen page*/\n\t\t#cjp-accordion1 .app {\n\t\t\t\tleft: 5px !important;\n\t\t\t\tmargin: 5px !important;\n\t\t\t\tposition: relative !important;\n\t\t}\n
 
 common.disablejQueryTransition = \n\t\t/* For having a faster transition */\n\t\t$(document).on("mobileinit", function() {\n\t\t\t\t$.mobile.defaultPageTransition = "none";\n\t\t\t\t$.mobile.defaultDialogTransition = "none";\n\t\t});
 
@@ -24,3 +24,8 @@ externalPanel.before-content = \n\t\t<!-- page 1 -->\n\t\t<div data-role="page" 
 externalPanel.after-content = \n\t\t\t\t<a href="#panel">Open panel</a>\n\t\t\t</div><!-- /content -->\n\t\t</div><!-- /page -->\n\t\t\n\t\t<!-- panel to reveal -->\n\t\t<div data-role="panel" id="panel" data-position='{0}' data-display='{1}' data-theme="a">\n\t\t\t<p>Place panel content here</p>\n\t\t\t<a href="#close" data-rel="close">Close</a>\n\t\t</div><!-- /panel -->\n
 
 externalPanel.behavior = \n        <script id="paneljs">\n\t\t$(function() {\n\t\t\ttry{$( "body>[data-role=\'panel\']" ).panel();}catch(e){}\n\t\t});\n        </script>
+
+#Accordion template ...
+accordion.before-content = \n\t\t<div data-role="page" id="page1">\n\t\t\t<div  data-role="header"><h1>Page 1</h1></div>\n\t\t\t<div data-role="content">Introductory text can be placed here ...</div>\n\t\t\t<div data-role="collapsible-set">\n\t\t\t\t<div id="cjp-accordion1" data-role="collapsible" data-collapsed="false">\n\t\t\t\t\t<h3>Section 1</h3>\n\t\t\t\t\t<p>
+
+accordion.after-content = </p>\n\t\t\t\t</div>\n\t\t\t\t<div data-role="collapsible">\n\t\t\t\t\t<h3>Section 2</h3>\n\t\t\t\t\t<p>Section 2</p>\n\t\t\t\t</div>\n\t\t\t\t<div data-role="collapsible">\n\t\t\t\t\t<h3>Section 3</h3>\n\t\t\t\t\t<p>Section 3</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\n\n\t\t\t<div data-role="footer" data-position="fixed">\n\t\t\t\t<h4>Page 1 Footer</h4>\n\t\t\t</div>\n\t\t\t<!-- end page 1 footer -->\n\t\t</div>\n

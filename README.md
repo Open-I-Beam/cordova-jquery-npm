@@ -38,6 +38,9 @@ This template will apply a three page jQuery mobile template to your index.html 
 ## external panel
 This template will apply an external panel to jQuery mobile.  When this option is selected you will also be prompted for additional information such as which side of the page you'd like the panel to open on (left, right) and which reveal style would you like (reveal, push, overlay)
 
+## accordion
+This template will apply three sections' jQuery mobile accordion template to your index.html file. Your existing content will be placed as part of the first section. It is important to note that you have to make sure that your existing content parent element does not use CSS "absolute" position in order to be controlled by the accordion section.
+
 WARNING
 ==============
 
