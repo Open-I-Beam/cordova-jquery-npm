@@ -32,7 +32,10 @@ Once the project is initialized, the module will prompt asking if you'd like to 
 ## multiple pages
 This template will apply a simple two page jQuery mobile template to your index.html file.  
 
-## perisistent navbar
+## header navbar
+This template will apply a three page jQuery mobile template to your index.html file that includes a header navbar for the header on each page.
+
+## persistent navbar
 This template will apply a three page jQuery mobile template to your index.html file that includes a persistent navbar for the footer on each page.
 
 ## external panel
