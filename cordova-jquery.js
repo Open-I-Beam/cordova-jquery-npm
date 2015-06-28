@@ -99,7 +99,7 @@ function templateQuestion(){
 		type: "list",
 		name: "template",
 		message: templatePromptMsg,
-		choices: [ "multiPage", "headerNavbar", "persistentNavbar", "externalPanel", "accordion", "exit" ]
+		choices: [ "multiPage", "headerNavbar", "persistentNavbar", "externalPanel", "accordion", "listView", "exit" ]
 	  }], function( answers ) {
 		switch(answers.template) {
 		case 'multiPage':
@@ -129,7 +129,10 @@ function templateQuestion(){
 			break;	
 		case 'headerNavbar':
 			renderTemplate("templates.headerNavbar.before-content", "templates.headerNavbar.after-content", "text.headerNavbar.doneMsg")
-			break;									
+			break;	
+		case 'listView':
+			renderTemplate("templates.listView.before-content", "templates.listView.after-content", "text.listView.doneMsg")
+			break;										
 		default:
 			console.log('Okay, exiting.');
 			break;

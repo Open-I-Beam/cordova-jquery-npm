@@ -44,6 +44,9 @@ This template will apply an external panel to jQuery mobile.  When this option i
 ## accordion
 This template will apply three sections' jQuery mobile accordion template to your index.html file. Your existing content will be placed as part of the first section. It is important to note that you have to make sure that your existing content parent element does not use CSS "absolute" position in order to be controlled by the accordion section.
 
+## list view
+This template will apply a jQuery mobile list view template to your index.html file. The first item of the list view points to your existing content page, and the second and the third items of the list view point to two placeholder pages.
+
 WARNING
 ==============
 
