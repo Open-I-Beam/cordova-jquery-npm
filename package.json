@@ -19,6 +19,16 @@
 	"jQM"
   ],
   "author": "Lisa Seacat DeLuca <ldeluca@us.ibm.com> (http://ibm.com/)",
+  "contributors": [{
+    "name": "Andy Smith",
+    "email": "andybs@us.ibm.com"
+  }, {
+    "name": "Hazem Saleh",
+    "email": "hazems@eg.ibm.com"  
+  }, {
+    "name": "Jacques Perrault",
+    "email": "jacques_perrault@us.ibm.com"  
+  }],
   "licenses": 
   {
     "type": "MIT",
