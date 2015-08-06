@@ -31,21 +31,32 @@ Once the project is initialized, the module will prompt asking if you'd like to 
 
 ## multiple pages
 This template will apply a simple two page jQuery mobile template to your index.html file.  
+![First](https://raw.githubusercontent.com/Open-I-Beam/cordova-jquery-npm/master/figures/multipage1.jpg)
+![Second](https://raw.githubusercontent.com/Open-I-Beam/cordova-jquery-npm/master/figures/multipage2.jpg)
 
 ## header navbar
 This template will apply a three page jQuery mobile template to your index.html file that includes a header navbar for the header on each page.
+![First](https://raw.githubusercontent.com/Open-I-Beam/cordova-jquery-npm/master/figures/headerNavBar1.jpg)
+![Second](https://raw.githubusercontent.com/Open-I-Beam/cordova-jquery-npm/master/figures/headerNavBar2.jpg)
 
 ## persistent navbar
 This template will apply a three page jQuery mobile template to your index.html file that includes a persistent navbar for the footer on each page.
+![First](https://raw.githubusercontent.com/Open-I-Beam/cordova-jquery-npm/master/figures/pnav1.jpg)
+![Second](https://raw.githubusercontent.com/Open-I-Beam/cordova-jquery-npm/master/figures/pnav2.jpg)
 
 ## external panel
 This template will apply an external panel to jQuery mobile.  When this option is selected you will also be prompted for additional information such as which side of the page you'd like the panel to open on (left, right) and which reveal style would you like (reveal, push, overlay)
+![First](https://raw.githubusercontent.com/Open-I-Beam/cordova-jquery-npm/master/figures/panel1.jpg)
+![Second](https://raw.githubusercontent.com/Open-I-Beam/cordova-jquery-npm/master/figures/panel2.jpg)
 
 ## accordion
 This template will apply three sections' jQuery mobile accordion template to your index.html file. Your existing content will be placed as part of the first section. It is important to note that you have to make sure that your existing content parent element does not use CSS "absolute" position in order to be controlled by the accordion section.
+![First](https://raw.githubusercontent.com/Open-I-Beam/cordova-jquery-npm/master/figures/section.jpg)
 
 ## list view
 This template will apply a jQuery mobile list view template to your index.html file. The first item of the list view points to your existing content page, and the second and the third items of the list view point to two placeholder pages.
+![First](https://raw.githubusercontent.com/Open-I-Beam/cordova-jquery-npm/master/figures/ListView1.jpg)
+![Second](https://raw.githubusercontent.com/Open-I-Beam/cordova-jquery-npm/master/figures/ListView2.jpg)
 
 WARNING
 ==============
