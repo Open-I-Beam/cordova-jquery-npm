@@ -1,6 +1,6 @@
 {
   "name": "cordova-jquery",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "This npm module will configure an existing apache cordova application to use the latest jquery-mobile as well as allow users to choose from a number of jquery mobile templates to apply to their projects.",
   "main": "cordova-jquery",
   "repository": {
