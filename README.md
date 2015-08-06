@@ -31,16 +31,19 @@ Once the project is initialized, the module will prompt asking if you'd like to 
 
 ## multiple pages
 This template will apply a simple two page jQuery mobile template to your index.html file.  
+
 ![First](https://raw.githubusercontent.com/Open-I-Beam/cordova-jquery-npm/master/figures/multipage1.jpg)
 ![Second](https://raw.githubusercontent.com/Open-I-Beam/cordova-jquery-npm/master/figures/multipage2.jpg)
 
 ## header navbar
 This template will apply a three page jQuery mobile template to your index.html file that includes a header navbar for the header on each page.
+
 ![First](https://raw.githubusercontent.com/Open-I-Beam/cordova-jquery-npm/master/figures/headerNavBar1.jpg)
 ![Second](https://raw.githubusercontent.com/Open-I-Beam/cordova-jquery-npm/master/figures/headerNavBar2.jpg)
 
 ## persistent navbar
 This template will apply a three page jQuery mobile template to your index.html file that includes a persistent navbar for the footer on each page.
+
 ![First](https://raw.githubusercontent.com/Open-I-Beam/cordova-jquery-npm/master/figures/pnav1.jpg)
 ![Second](https://raw.githubusercontent.com/Open-I-Beam/cordova-jquery-npm/master/figures/pnav2.jpg)
 
