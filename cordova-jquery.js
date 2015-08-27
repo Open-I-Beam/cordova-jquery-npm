@@ -70,11 +70,15 @@ function addJQM(fs){
     var disablejQueryTransition = builtInTemplates.get('templates.common.disablejQueryTransition');    
                                   
     //<link rel="stylesheet" href="js/jquery.mobile.css">
-    $("head link[rel='stylesheet']").last().after("\n        <link rel='stylesheet' type='text/css' href='" + npmjquerymobilecss + "' >");
-    $("head link[rel='stylesheet']").last().after("\n        <style>" + npmjQueryMobileCustomCss + "</style>");    
-    $('body script[type="text/javascript"]').last().after('\n        <script type="text/javascript" src="' + npmjquery + '" id="cordova-jquery"></script>');
-    $('body script[type="text/javascript"]').last().after('\n\t\t<script type=\"text/javascript\">' + disablejQueryTransition + '\n\t\t</script>');    
-    $('body script[type="text/javascript"]').last().after('\n        <script type="text/javascript" src="' + npmjquerymobile + '"></script>');
+    $("head link[rel='stylesheet']").last().after("\n\t\t<link rel='stylesheet' type='text/css' href='" + npmjquerymobilecss + "' >");
+    $("head link[rel='stylesheet']").last().after("\n\t\t<style>" + npmjQueryMobileCustomCss + "\t\t</style>");   
+    
+    // Fix for tools that include "cordova.js" outside the <body> element.
+    $('script[src="cordova.js"]').after('\n        <script type="text/javascript" src="' + npmjquery + '" id="cordova-jquery"></script>');
+    
+    $('script[id="cordova-jquery"]').after('\n\t\t<script type=\"text/javascript\" id="jqm-trans-disable">' + disablejQueryTransition + '\n\t\t</script>');
+    
+    $('script[id="jqm-trans-disable"]').after('\n        <script type="text/javascript" src="' + npmjquerymobile + '"></script>');
 
     fs.writeFileSync(myfile, $.html());
 
