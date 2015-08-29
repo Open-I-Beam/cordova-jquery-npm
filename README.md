@@ -3,6 +3,13 @@ cordova-jquery
 
 npm module to add jQuery mobile to an existing Apache Cordova hybrid mobile application.
 
+Installation
+===============
+
+You can install cordova-jquery plugin using the following npm command
+
+    npm install -g cordova-jquery
+ 
 jQuery version
 ===============
 
